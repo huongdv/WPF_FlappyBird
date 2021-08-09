@@ -1,0 +1,55 @@
+﻿<Window x:Class="WpfFlappyBird.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Flappy Bird" Icon="images/Icon.png" ResizeMode="NoResize" Height="550" Width="800">
+    <Grid>
+        <Canvas Name="MainCanvas" KeyDown="onPressKeyDown" KeyUp="onPressKeyUp" Focusable="True">
+            <Canvas.Background>
+                <ImageBrush ImageSource="images/bg.png"/>
+            </Canvas.Background>
+
+            <Image Stretch="Fill" Name="pipe10" Height="400" Width="70" Source="images/pipeTop.png" Canvas.Left="150" Canvas.Top="-80" Tag="pipe10"/>
+            <Image Stretch="Fill" Name="pipe11" Height="400" Width="70" Source="images/pipeBottom.png"  Canvas.Left="150" Canvas.Top="430" Tag="pipe11"/>
+
+            <Image Stretch="Fill" Name="pipe20" Height="400" Width="70" Source="images/pipeTop.png" Canvas.Left="400" Canvas.Top="-360" Tag="pipe20"/>
+            <Image Stretch="Fill" Name="pipe21" Height="400" Width="70" Source="images/pipeBottom.png"  Canvas.Left="400" Canvas.Top="150" Tag="pipe21"/>
+
+            <Image Stretch="Fill" Name="pipe30" Height="400" Width="70" Source="images/pipeTop.png" Canvas.Left="700" Canvas.Top="-200" Tag="pipe30"/>
+            <Image Stretch="Fill" Name="pipe31" Height="400" Width="70" Source="images/pipeBottom.png"  Canvas.Left="700" Canvas.Top="310" Tag="pipe31"/>
+
+            <Label Name="scoreText" FontSize="40" Content="0" FontFamily="Rockwell Extra Bold" FontStretch="Expanded" Canvas.Left="420" Canvas.Top="0" Foreground="White" />
+
+            <Image Stretch="Fill" Name="flappyBird" Height="30" Width="40" Source="images/bird1.png" Canvas.Left="100" Canvas.Top="150">
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard Name="storyboard" RepeatBehavior="Forever">
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Source" Duration="0:0:0.15">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <BitmapImage x:Name="imgBird1" UriSource="images/bird1.png"/>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.05">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <BitmapImage x:Name="imgBird2" UriSource="images/bird2.png"/>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <BitmapImage x:Name="imgBird3" UriSource="images/bird3.png"/>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+            <Image x:Name="GameOver" Height="50" Width="150" Source="images/gameOver.png" Visibility="Hidden" Canvas.Left="350" Canvas.Top="150"/>
+            <Image x:Name="GameReady" Height="50" Width="150" Source="images/getReady.png" Canvas.Left="350" Canvas.Top="150"/>
+            <Label Name="enterToStart" FontSize="30" Content="Press Enter to Start. Space to Fly" FontFamily="Rockwell Extra Bold" FontStretch="Expanded" Canvas.Left="150" Canvas.Top="220" Foreground="Orange" />
+            <Image Stretch="Fill" Height="50" Width="900" Source="images/base1.png" Canvas.Left="0" Canvas.Top="470" Tag="base"/>
+        </Canvas>
+    </Grid>
+</Window>
